@@ -30,7 +30,7 @@ public class AddTaskController extends Controller {
             Task task2 = new Task(name, timeStart, timeEnd, interval);
             taskList.add(task2);
         } else {
-            System.out.println("ERROR you choose wrong number");
+            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
             return Controller.MAIN_MENU_ACTION;
         }
         return view.printInfo(taskList);
