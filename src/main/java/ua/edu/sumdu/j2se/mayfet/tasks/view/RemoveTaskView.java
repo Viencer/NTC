@@ -21,8 +21,8 @@ public class RemoveTaskView implements View, TaskAction {
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return 2;
         }
         return taskType;
     }
@@ -33,8 +33,8 @@ public class RemoveTaskView implements View, TaskAction {
         try {
             String indexIn = reader.readLine();
             index = Integer.parseInt(indexIn);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return Integer.MAX_VALUE;
         }
         return index;
     }

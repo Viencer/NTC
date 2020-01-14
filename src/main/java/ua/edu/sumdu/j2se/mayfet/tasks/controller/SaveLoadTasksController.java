@@ -5,10 +5,7 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.TaskIO;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.SaveLoadTasksView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class SaveLoadTasksController extends Controller {
 
@@ -33,7 +30,8 @@ public class SaveLoadTasksController extends Controller {
                 String nameFile = ((SaveLoadTasksView) view).fileName();
                 TaskIO.read(taskList, new FileReader("saves/" + nameFile + ".json"));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("ERROR FILE NOT FOUND");
+                return Controller.SAVE_LOAD_TASKS;
             }
         } else if (taskChoose == ChooseNum.THIRD) {
             return Controller.MAIN_MENU_ACTION;

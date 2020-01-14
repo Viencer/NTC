@@ -46,12 +46,12 @@ public class AddTaskView implements View, TaskAction {
 
     public LocalDateTime timeTask() {
         System.out.println("Put date (example: 2020-04-08 12:30)");
-        LocalDateTime time = null;
+        LocalDateTime time;
         String date = "";
         try {
             date = reader.readLine();
-        } catch (IOException | DateTimeParseException e) {
-            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -65,27 +65,38 @@ public class AddTaskView implements View, TaskAction {
     public LocalDateTime timeTaskStart() {
         System.out.println("Put start date (example: 2020-04-22 12:30)");
         String date = "";
+        LocalDateTime start;
         try {
             date = reader.readLine();
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime start = LocalDateTime.parse(date, formatter);
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            start = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            return start = LocalDateTime.now();
+        }
+
         return start;
     }
 
     public LocalDateTime timeTaskEnd() {
         System.out.println("Put end date (example: 2020-04-22 12:30)");
         String date = "";
+        LocalDateTime end;
         try {
             date = reader.readLine();
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime start = LocalDateTime.parse(date, formatter);
-        return start;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            end = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            return end = LocalDateTime.now();
+        }
+        return end;
     }
 
     public int repeatInterval() {
@@ -95,7 +106,7 @@ public class AddTaskView implements View, TaskAction {
             String indexIn = reader.readLine();
             interval = Integer.parseInt(indexIn);
         } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
+            interval = 0;
         }
         return interval;
     }

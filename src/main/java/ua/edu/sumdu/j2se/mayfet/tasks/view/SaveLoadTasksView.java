@@ -28,8 +28,8 @@ public class SaveLoadTasksView implements View, TaskAction {
         int action = 0;
         try {
             action = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return 3;
         }
         this.check = action;
         return action;

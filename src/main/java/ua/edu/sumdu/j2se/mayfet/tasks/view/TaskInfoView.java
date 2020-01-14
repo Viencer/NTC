@@ -17,8 +17,8 @@ public class TaskInfoView implements View, TaskAction {
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return 3;
         }
         return taskType;
     }
@@ -34,8 +34,8 @@ public class TaskInfoView implements View, TaskAction {
         try {
             System.out.println("choose task on index");
             index = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return 0;
         }
         return index;
     }

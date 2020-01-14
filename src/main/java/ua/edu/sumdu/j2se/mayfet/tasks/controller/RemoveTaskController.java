@@ -23,7 +23,7 @@ public class RemoveTaskController extends Controller {
             return MAIN_MENU_ACTION;
         } else {
             System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
-            return Controller.ADD_TASK_ACTION;
+            return Controller.REMOVE_TASK_ACTION;
         }
         return view.printInfo(taskList);
     }
