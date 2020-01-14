@@ -4,14 +4,13 @@ import ua.edu.sumdu.j2se.mayfet.tasks.controller.Controller;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 public class AddTaskView implements View, TaskAction {
+    int nmm;
+
     @Override
     public int printInfo(AbstractTaskList taskList) {
         System.out.println("New task was added");
@@ -46,7 +45,7 @@ public class AddTaskView implements View, TaskAction {
 
     public LocalDateTime timeTask() {
         System.out.println("Put date (example: 2020-04-08 12:30)");
-        LocalDateTime time;
+        LocalDateTime time = null;
         String date = "";
         try {
             date = reader.readLine();
@@ -57,7 +56,7 @@ public class AddTaskView implements View, TaskAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             time = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return time = LocalDateTime.now();
+            return time = LocalDateTime.now().minusYears(999);
         }
         return time;
     }
@@ -65,7 +64,7 @@ public class AddTaskView implements View, TaskAction {
     public LocalDateTime timeTaskStart() {
         System.out.println("Put start date (example: 2020-04-22 12:30)");
         String date = "";
-        LocalDateTime start;
+        LocalDateTime start = null;
         try {
             date = reader.readLine();
         } catch (IOException | NumberFormatException e) {
@@ -75,16 +74,15 @@ public class AddTaskView implements View, TaskAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             start = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return start = LocalDateTime.now();
+            return start = LocalDateTime.now().minusYears(999);
         }
-
         return start;
     }
 
     public LocalDateTime timeTaskEnd() {
         System.out.println("Put end date (example: 2020-04-22 12:30)");
         String date = "";
-        LocalDateTime end;
+        LocalDateTime end = null;
         try {
             date = reader.readLine();
         } catch (IOException | NumberFormatException e) {
@@ -94,7 +92,7 @@ public class AddTaskView implements View, TaskAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             end = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return end = LocalDateTime.now();
+            return end = LocalDateTime.now().minusSeconds(1);
         }
         return end;
     }
@@ -106,7 +104,7 @@ public class AddTaskView implements View, TaskAction {
             String indexIn = reader.readLine();
             interval = Integer.parseInt(indexIn);
         } catch (IOException | NumberFormatException e) {
-            interval = 0;
+            interval = Integer.MAX_VALUE;
         }
         return interval;
     }

@@ -21,6 +21,10 @@ public class AddTaskController extends Controller {
         if (taskChoose == ChooseNum.FIRST) {
             String name = ((AddTaskView) view).nameTask();
             LocalDateTime time = ((AddTaskView) view).timeTask();
+            if (time.isBefore(LocalDateTime.now())) {
+                System.out.println("ERROR UNEXPECTED TIME");
+                return ADD_TASK_ACTION;
+            }
             task = new Task(name, time);
             taskList.add(task);
         } else if (taskChoose == ChooseNum.SECOND) {
@@ -28,6 +32,18 @@ public class AddTaskController extends Controller {
             LocalDateTime timeStart = ((AddTaskView) view).timeTaskStart();
             LocalDateTime timeEnd = ((AddTaskView) view).timeTaskEnd();
             int interval = ((AddTaskView) view).repeatInterval();
+            if ((timeStart.isBefore(LocalDateTime.now()))) {
+                System.out.println("ERROR UNEXPECTED TIME");
+                return ADD_TASK_ACTION;
+            }
+            if ((timeEnd.isBefore(LocalDateTime.now()))) {
+                System.out.println("ERROR UNEXPECTED END TIME");
+                return ADD_TASK_ACTION;
+            }
+            if (interval == Integer.MAX_VALUE) {
+                System.out.println("ERROR UNEXPECTED INTERVAL");
+                return ADD_TASK_ACTION;
+            }
             task = new Task(name, timeStart, timeEnd, interval);
             taskList.add(task);
         } else if (taskChoose == ChooseNum.THIRD) {
