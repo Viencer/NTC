@@ -39,6 +39,7 @@ public class SaveLoadTasksView implements View, TaskAction {
     public String fileName() {
         String nameFile = "";
         try {
+            System.out.println("Put save file name");
             nameFile = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
