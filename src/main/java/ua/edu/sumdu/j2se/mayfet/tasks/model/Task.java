@@ -21,8 +21,10 @@ public class Task implements Serializable, Cloneable {
     public Task(String title, LocalDateTime time) {
         setTitle(title);
         setTime(time);
+        this.startTime = time;
+        this.endTime = time;
         if (time == null) {
-            throw new IllegalArgumentException("time is minus");
+            throw new IllegalArgumentException("time is null");
         }
     }
 

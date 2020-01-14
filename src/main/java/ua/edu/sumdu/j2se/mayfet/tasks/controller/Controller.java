@@ -12,7 +12,8 @@ public abstract class Controller {
     public static final int REMOVE_TASK_ACTION = 3;
     public static final int CALENDAR_ACTION = 4;
     public static final int SAVE_LOAD_TASKS = 5;
-    public static final int FINISH_ACTION = 6;
+    public static final int TASK_INFO = 6;
+    public static final int FINISH_ACTION = 7;
 
     protected View view;
     protected int actionToPerform = 0;
