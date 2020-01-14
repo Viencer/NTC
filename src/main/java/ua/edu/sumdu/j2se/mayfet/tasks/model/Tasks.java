@@ -1,6 +1,6 @@
-package ua.edu.sumdu.j2se.mayfet.tasks;
+package ua.edu.sumdu.j2se.mayfet.tasks.model;
 
-import org.jetbrains.annotations.NotNull;
+import ua.edu.sumdu.j2se.mayfet.tasks.model.Task;
 
 import java.time.LocalDateTime;
 import java.util.*;

@@ -1,9 +1,8 @@
-package ua.edu.sumdu.j2se.mayfet.tasks;
+package ua.edu.sumdu.j2se.mayfet.tasks.model;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class ArrayTaskList extends AbstractTaskList implements Cloneable, Iterable<Task> {
     private Task[] tasks = new Task[0];

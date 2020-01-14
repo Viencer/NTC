@@ -1,4 +1,4 @@
-package ua.edu.sumdu.j2se.mayfet.tasks;
+package ua.edu.sumdu.j2se.mayfet.tasks.model;
 
 
 import java.io.Serializable;
