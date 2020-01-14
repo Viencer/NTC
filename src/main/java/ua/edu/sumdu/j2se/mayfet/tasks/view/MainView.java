@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.view;
 
+import ua.edu.sumdu.j2se.mayfet.tasks.controller.Controller;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.BufferedReader;
@@ -22,8 +23,8 @@ public class MainView implements View {
         int variant = 0;
         try {
             variant = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return 0;
         }
         return variant;
     }

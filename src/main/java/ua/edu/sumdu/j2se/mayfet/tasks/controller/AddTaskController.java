@@ -19,10 +19,10 @@ public class AddTaskController extends Controller {
         Task task;
         int taskChoose = ((AddTaskView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
-                String name = ((AddTaskView) view).nameTask();
-                LocalDateTime time = ((AddTaskView) view).timeTask();
-                task = new Task(name, time);
-                taskList.add(task);
+            String name = ((AddTaskView) view).nameTask();
+            LocalDateTime time = ((AddTaskView) view).timeTask();
+            task = new Task(name, time);
+            taskList.add(task);
         } else if (taskChoose == ChooseNum.SECOND) {
             String name = ((AddTaskView) view).nameTask();
             LocalDateTime timeStart = ((AddTaskView) view).timeTaskStart();
@@ -30,9 +30,11 @@ public class AddTaskController extends Controller {
             int interval = ((AddTaskView) view).repeatInterval();
             task = new Task(name, timeStart, timeEnd, interval);
             taskList.add(task);
+        } else if (taskChoose == ChooseNum.THIRD) {
+            return Controller.MAIN_MENU_ACTION;
         } else {
             System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
-            return Controller.MAIN_MENU_ACTION;
+            return Controller.ADD_TASK_ACTION;
         }
         return view.printInfo(taskList);
     }

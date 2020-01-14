@@ -18,7 +18,7 @@ public class SaveLoadTasksController extends Controller {
 
     @Override
     public int process(AbstractTaskList taskList) {
-        int taskChoose = ((SaveLoadTasksView) view).saveOrLoad();
+        int taskChoose = ((SaveLoadTasksView) view).taskChoose();
         File directory = new File("saves");
         directory.mkdir();
         if (taskChoose == ChooseNum.FIRST) {
@@ -35,9 +35,11 @@ public class SaveLoadTasksController extends Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (taskChoose == ChooseNum.THIRD) {
+            return Controller.MAIN_MENU_ACTION;
         } else {
             System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
-            return Controller.MAIN_MENU_ACTION;
+            return Controller.SAVE_LOAD_TASKS;
         }
         return view.printInfo(taskList);
     }

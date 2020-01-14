@@ -10,21 +10,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class AddTaskView implements View {
+public class AddTaskView implements View, TaskAction {
     @Override
     public int printInfo(AbstractTaskList taskList) {
         System.out.println("New task was added");
         return Controller.MAIN_MENU_ACTION;
     }
 
+    @Override
     public int taskChoose() {
         System.out.println("Put task type");
         System.out.println("1 - non repeatable");
         System.out.println("2 - repeatable");
+        System.out.println("3 - back to menu");
         int taskType = 0;
         try {
-            String indexIn = reader.readLine();
-            taskType = Integer.parseInt(indexIn);
+            taskType = Integer.parseInt(reader.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }

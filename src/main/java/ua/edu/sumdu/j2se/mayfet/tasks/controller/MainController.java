@@ -26,14 +26,16 @@ public class MainController extends Controller {
     @Override
     public int process(AbstractTaskList taskList) throws IOException {
         int action = view.printInfo(taskList);
-        for (; ; ) {
-            for (Controller controller : controllers) {
-                if (controller.canProcess(action)) {
-                    action = controller.process(this.taskList);
+        if (action == 1 || action == 2 || action == 3 || action == 4 || action == 5 || action == 6) {
+            for (; ; ) {
+                for (Controller controller : controllers) {
+                    if (controller.canProcess(action)) {
+                        action = controller.process(this.taskList);
+                    }
                 }
-            }
-            if (action == FINISH_ACTION) {
-                break;
+                if (action == FINISH_ACTION) {
+                    break;
+                }
             }
         }
         return FINISH_ACTION;

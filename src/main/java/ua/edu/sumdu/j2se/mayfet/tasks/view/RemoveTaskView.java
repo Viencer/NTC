@@ -6,11 +6,25 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
 
-public class RemoveTaskView implements View {
+public class RemoveTaskView implements View, TaskAction {
     @Override
     public int printInfo(AbstractTaskList taskList) {
         System.out.println("task removed");
         return Controller.MAIN_MENU_ACTION;
+    }
+
+    @Override
+    public int taskChoose() {
+        System.out.println("delete task?");
+        System.out.println("1 - delete");
+        System.out.println("2 - back to menu");
+        int taskType = 0;
+        try {
+            taskType = Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return taskType;
     }
 
     public int removeTask() {

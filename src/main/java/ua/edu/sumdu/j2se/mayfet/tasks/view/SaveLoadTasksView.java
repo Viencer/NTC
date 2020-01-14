@@ -6,7 +6,7 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
 
-public class SaveLoadTasksView implements View {
+public class SaveLoadTasksView implements View, TaskAction {
     int check;
 
     @Override
@@ -19,14 +19,15 @@ public class SaveLoadTasksView implements View {
         return Controller.MAIN_MENU_ACTION;
     }
 
-    public int saveOrLoad() {
+    @Override
+    public int taskChoose() {
         System.out.println("Put action type");
         System.out.println("1 - save");
         System.out.println("2 - load");
+        System.out.println("3 - back to menu");
         int action = 0;
         try {
-            String indexIn = reader.readLine();
-            action = Integer.parseInt(indexIn);
+            action = Integer.parseInt(reader.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
