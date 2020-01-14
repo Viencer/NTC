@@ -16,7 +16,7 @@ public class MainView implements View {
         System.out.println("1 check tasks");
         System.out.println("2 add new task");
         System.out.println("3 remove task");
-        System.out.println("4 choose time interval");
+        System.out.println("4 calendar");
         System.out.println("5 exit");
         int variant = 0;
         try {

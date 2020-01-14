@@ -13,8 +13,22 @@ import java.util.Date;
 public class AddTaskView implements View {
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("New task added");
+        System.out.println("New task was added");
         return Controller.MAIN_MENU_ACTION;
+    }
+
+    public int taskChoose() {
+        System.out.println("Put task type");
+        System.out.println("1 - non repeatable");
+        System.out.println("2 - repeatable");
+        int taskType = 0;
+        try {
+            String indexIn = reader.readLine();
+            taskType = Integer.parseInt(indexIn);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return taskType;
     }
 
     public String nameTask() {
@@ -37,7 +51,46 @@ public class AddTaskView implements View {
             e.printStackTrace();
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime sdf = LocalDateTime.parse(date, formatter);
-        return sdf;
+        LocalDateTime time = LocalDateTime.parse(date, formatter);
+        return time;
     }
+
+    public LocalDateTime timeTaskStart() {
+        System.out.println("Put start date (example: 2020-04-22 12:30)");
+        String date = "";
+        try {
+            date = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime start = LocalDateTime.parse(date, formatter);
+        return start;
+    }
+
+    public LocalDateTime timeTaskEnd() {
+        System.out.println("Put end date (example: 2020-04-22 12:30)");
+        String date = "";
+        try {
+            date = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime start = LocalDateTime.parse(date, formatter);
+        return start;
+    }
+
+    public int repeatInterval() {
+        System.out.println("Put interval");
+        int interval = 0;
+        try {
+            String indexIn = reader.readLine();
+            interval = Integer.parseInt(indexIn);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return interval;
+    }
+
 }
