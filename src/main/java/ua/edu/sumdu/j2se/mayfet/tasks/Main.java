@@ -7,8 +7,10 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.MainView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Manager started");
         AbstractTaskList taskList = new ArrayTaskList();
         View mainView = new MainView();

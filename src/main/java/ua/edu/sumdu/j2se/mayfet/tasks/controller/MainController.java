@@ -3,6 +3,7 @@ package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +20,13 @@ public class MainController extends Controller {
         controllers.add(new AddTaskController(new AddTaskView(), Controller.ADD_TASK_ACTION));
         controllers.add(new RemoveTaskController(new RemoveTaskView(), Controller.REMOVE_TASK_ACTION));
         controllers.add(new CalendarController(new CalendarView(), Controller.CALENDAR_ACTION));
+        controllers.add(new SaveLoadTasksController(new SaveLoadTasksView(), Controller.SAVE_LOAD_TASKS));
     }
 
     @Override
-    public int process(AbstractTaskList taskList) {
+    public int process(AbstractTaskList taskList) throws IOException {
         int action = view.printInfo(taskList);
-        for (; ;) {
+        for (; ; ) {
             for (Controller controller : controllers) {
                 if (controller.canProcess(action)) {
                     action = controller.process(this.taskList);
