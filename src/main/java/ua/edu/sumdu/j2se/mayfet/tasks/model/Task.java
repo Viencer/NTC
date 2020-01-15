@@ -126,7 +126,7 @@ public class Task implements Serializable, Cloneable {
                         return null;
                     }
                     while ((a.isBefore(getEndTime()))) {
-                        a = a.plusSeconds(getRepeatInterval());
+                        a = a.plusMinutes(getRepeatInterval());
                         if (a.isAfter(getEndTime())) {
                             return null;
                         }

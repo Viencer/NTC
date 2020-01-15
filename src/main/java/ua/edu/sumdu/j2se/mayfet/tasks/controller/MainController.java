@@ -28,7 +28,7 @@ public class MainController extends Controller {
     public int process(AbstractTaskList taskList) throws IOException {
         int action = view.printInfo(taskList);
         if (action == 1 || action == 2 || action == 3 || action == 4 || action == 5 || action == 6 || action == 7) {
-            for (; ; ) {
+            for (; ;) {
                 for (Controller controller : controllers) {
                     if (controller.canProcess(action)) {
                         action = controller.process(this.taskList);
