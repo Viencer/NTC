@@ -2,6 +2,7 @@ package ua.edu.sumdu.j2se.mayfet.tasks.view;
 
 import ua.edu.sumdu.j2se.mayfet.tasks.controller.Controller;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
+import ua.edu.sumdu.j2se.mayfet.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.Tasks;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class CalendarView implements View, TaskAction {
         System.out.println("non repeated: ");
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.getTask(i).getRepeatInterval() == 0) {
-                System.out.print("{" + taskList.getTask(i).getTime() + "=[ " + taskList.getTask(i) + "}], ");
+                System.out.print(i + ". {" + taskList.getTask(i).getTime() + "=[ " + taskList.getTask(i) + "}], ");
             }
 
         }

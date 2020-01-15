@@ -28,7 +28,7 @@ public class Main {
 //        LocalDateTime S = LocalDateTime.parse(Start, formatte);
 //        DateTimeFormatter formatt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 //        LocalDateTime E = LocalDateTime.parse(End, formatt);
-//        Task task1 = new Task("2", S, E, 30000);
+//        Task task1 = new Task("2", S, E, 3000);
 //        Task task = new Task("1", S);
 //        task.setActive(true);
 //        task1.setActive(true);
