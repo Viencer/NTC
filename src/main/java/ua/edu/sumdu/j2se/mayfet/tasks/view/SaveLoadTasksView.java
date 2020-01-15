@@ -30,7 +30,7 @@ public class SaveLoadTasksView implements View, TaskAction {
         try {
             action = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 3;
+            return -1;
         }
         this.check = action;
         return action;

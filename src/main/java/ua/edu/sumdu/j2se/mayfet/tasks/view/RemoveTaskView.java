@@ -22,7 +22,7 @@ public class RemoveTaskView implements View, TaskAction {
         try {
             taskType = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 2;
+            return -1;
         }
         return taskType;
     }

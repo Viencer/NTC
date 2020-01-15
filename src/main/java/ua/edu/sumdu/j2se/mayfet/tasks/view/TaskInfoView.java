@@ -18,7 +18,7 @@ public class TaskInfoView implements View, TaskAction {
         try {
             taskType = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 3;
+            return -1;
         }
         return taskType;
     }
@@ -35,7 +35,7 @@ public class TaskInfoView implements View, TaskAction {
             System.out.println("choose task on index");
             index = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 0;
+            return -1;
         }
         return index;
     }
@@ -47,8 +47,8 @@ public class TaskInfoView implements View, TaskAction {
             System.out.println("1 - active mode");
             System.out.println("2 - inactive mode");
             mode = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            return -1;
         }
         return mode;
     }

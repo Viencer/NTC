@@ -19,7 +19,7 @@ public class TaskInfoController extends Controller {
         int taskChoose = ((TaskInfoView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             index = ((TaskInfoView) view).index();
-            if (index >= taskList.size()) {
+            if (index >= taskList.size() || index == -1) {
                 System.out.println("ERROR UNEXPECTED INDEX");
                 return TASK_INFO;
             }
@@ -27,23 +27,36 @@ public class TaskInfoController extends Controller {
             return TASK_INFO;
         } else if (taskChoose == ChooseNum.SECOND) {
             index = ((TaskInfoView) view).index();
-            if (index >= taskList.size()) {
+            if (index >= taskList.size() || index == -1) {
                 System.out.println("ERROR UNEXPECTED INDEX");
                 return TASK_INFO;
             } else {
                 int mode = ((TaskInfoView) view).activityMode();
-                if (mode == ChooseNum.FIRST) {
-                    taskList.getTask(index).setActive(true);
-                    if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
-                        taskList.remove(taskList.getTask(index));
-                    }
-                } else if (mode == ChooseNum.SECOND) {
-                    taskList.getTask(index).setActive(false);
-                    if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
-                        taskList.remove(taskList.getTask(index));
+                if (mode == -1) {
+                    System.out.println("ERROR UNEXPECTED NUM");
+                    return TASK_INFO;
+                } else {
+                    if (mode == ChooseNum.FIRST) {
+                        taskList.getTask(index).setActive(true);
+                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
+                            taskList.remove(taskList.getTask(index));
+                        }
+                    } else if (mode == ChooseNum.SECOND) {
+                        taskList.getTask(index).setActive(false);
+                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
+                            taskList.remove(taskList.getTask(index));
+                        }
+                    } else {
+                        System.out.println("ERROR UNEXPECTED INDEX");
+                        return TASK_INFO;
                     }
                 }
             }
+        } else if (taskChoose == ChooseNum.THIRD) {
+            return MAIN_MENU_ACTION;
+        } else {
+            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
+            return TASK_INFO;
         }
         return view.printInfo(taskList);
     }

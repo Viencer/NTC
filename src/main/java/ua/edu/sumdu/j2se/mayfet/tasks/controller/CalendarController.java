@@ -1,13 +1,8 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
-import ua.edu.sumdu.j2se.mayfet.tasks.model.Tasks;
-import ua.edu.sumdu.j2se.mayfet.tasks.view.AddTaskView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.CalendarView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
-
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 public class CalendarController extends Controller {
     public CalendarController(View view, int actionToPerform) {
@@ -19,8 +14,11 @@ public class CalendarController extends Controller {
         int taskChoose = ((CalendarView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             return view.printInfo(taskList);
-        } else {
+        } else if (taskChoose == ChooseNum.SECOND) {
             return MAIN_MENU_ACTION;
+        } else {
+            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
+            return CALENDAR_ACTION;
         }
     }
 }

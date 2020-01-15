@@ -22,7 +22,7 @@ public class AddTaskController extends Controller {
         if (taskChoose == ChooseNum.FIRST) {
             String name = ((AddTaskView) view).nameTask();
             LocalDateTime time = ((AddTaskView) view).timeTask();
-            if ((time.isEqual(LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999)))) {
+            if (time.isBefore(LocalDateTime.now())) {
                 System.out.println("ERROR UNEXPECTED TIME");
                 return ADD_TASK_ACTION;
             }
