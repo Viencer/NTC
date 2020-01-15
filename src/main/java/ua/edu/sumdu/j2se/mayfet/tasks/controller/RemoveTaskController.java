@@ -14,7 +14,7 @@ public class RemoveTaskController extends Controller {
         int taskChoose = ((RemoveTaskView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             int index = ((RemoveTaskView) view).removeTask();
-            if (index > taskList.size()) {
+            if (index >= taskList.size()) {
                 System.out.println("ERROR UNEXPECTED INDEX");
                 return REMOVE_TASK_ACTION;
             }
