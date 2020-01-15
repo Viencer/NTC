@@ -6,6 +6,7 @@ import ua.edu.sumdu.j2se.mayfet.tasks.view.AddTaskView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 
 public class AddTaskController extends Controller {
@@ -21,7 +22,7 @@ public class AddTaskController extends Controller {
         if (taskChoose == ChooseNum.FIRST) {
             String name = ((AddTaskView) view).nameTask();
             LocalDateTime time = ((AddTaskView) view).timeTask();
-            if (time.isBefore(LocalDateTime.now())) {
+            if ((time.isEqual(LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999)))) {
                 System.out.println("ERROR UNEXPECTED TIME");
                 return ADD_TASK_ACTION;
             }
@@ -32,7 +33,7 @@ public class AddTaskController extends Controller {
             LocalDateTime timeStart = ((AddTaskView) view).timeTaskStart();
             LocalDateTime timeEnd = ((AddTaskView) view).timeTaskEnd();
             int interval = ((AddTaskView) view).repeatInterval();
-            if ((timeStart.isBefore(LocalDateTime.now()))) {
+            if (timeStart.isBefore(LocalDateTime.now())) {
                 System.out.println("ERROR UNEXPECTED TIME");
                 return ADD_TASK_ACTION;
             }

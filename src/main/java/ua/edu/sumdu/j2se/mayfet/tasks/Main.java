@@ -28,9 +28,12 @@ public class Main {
 //        LocalDateTime S = LocalDateTime.parse(Start, formatte);
 //        DateTimeFormatter formatt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 //        LocalDateTime E = LocalDateTime.parse(End, formatt);
-//        Task task = new Task("staa", S, E, 200000);
+//        Task task1 = new Task("2", S, E, 30000);
+//        Task task = new Task("1", S);
 //        task.setActive(true);
-//        taskList.add(task);
+//        task1.setActive(true);
+//        //taskList.add(task);
+//        taskList.add(task1);
 //        System.out.println(Tasks.calendar(taskList, S, E));
     }
 

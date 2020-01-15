@@ -21,17 +21,19 @@ public class Tasks {
 
     public static SortedMap<LocalDateTime, Set<Task>> calendar(Iterable<Task> tasks, LocalDateTime start, LocalDateTime end) {
         SortedMap<LocalDateTime, Set<Task>> sort = new TreeMap<>();
-        for (Task task : tasks) {
-            LocalDateTime timeNow = task.nextTimeAfter(start.minusNanos(1));
-            while (timeNow != null && !timeNow.isAfter(end)) {
-                if (sort.containsKey(timeNow)) {
-                    sort.get(timeNow).add(task);
-                } else if (!sort.containsKey(timeNow)) {
-                    Set<Task> set = new HashSet<>();
-                    set.add(task);
-                    sort.put(timeNow, set);
+        for (Task i : tasks) {
+            if (i.isActive()) {
+                LocalDateTime timeNow = i.nextTimeAfter(start.minusNanos(1));
+                while (timeNow != null && !timeNow.isAfter(end)) {
+                    if (sort.containsKey(timeNow)) {
+                        sort.get(timeNow).add(i);
+                    } else if (!sort.containsKey(timeNow)) {
+                        Set<Task> set = new HashSet<>();
+                            set.add(i);
+                            sort.put(timeNow, set);
+                    }
+                    timeNow = i.nextTimeAfter(timeNow);
                 }
-                timeNow = task.nextTimeAfter(timeNow);
             }
         }
         return sort;

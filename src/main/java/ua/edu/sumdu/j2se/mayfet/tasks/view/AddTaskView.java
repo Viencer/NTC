@@ -5,6 +5,7 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -56,7 +57,7 @@ public class AddTaskView implements View, TaskAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             time = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return time = LocalDateTime.now().minusYears(999);
+            return LocalDateTime.now().minusYears(999);
         }
         return time;
     }
@@ -74,7 +75,7 @@ public class AddTaskView implements View, TaskAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             start = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return start = LocalDateTime.now().minusYears(999);
+            return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
         }
         return start;
     }
