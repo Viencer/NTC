@@ -27,7 +27,7 @@ public class CalendarView implements View, TaskAction {
         System.out.println("non repeated: ");
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.getTask(i).getRepeatInterval() == 0) {
-                System.out.print(i + ". {" + taskList.getTask(i).getTime() + "=[ " + taskList.getTask(i) + "}], ");
+                System.out.println(taskList.getTask(i).getTime() + " = " + taskList.getTask(i));
             }
 
         }
