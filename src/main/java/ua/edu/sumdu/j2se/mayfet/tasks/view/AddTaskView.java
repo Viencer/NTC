@@ -28,7 +28,7 @@ public class AddTaskView implements View, TaskAction {
         try {
             taskType = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 3;
+            return -1;
         }
         return taskType;
     }

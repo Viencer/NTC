@@ -33,7 +33,7 @@ public class CalendarView implements View, TaskAction {
         }
         System.out.println("");
         System.out.println("repeated: ");
-        System.out.println(Tasks.calendar(taskList, timeStart, timeStart));
+        System.out.println(Tasks.calendar(taskList, timeStart, timeEnd));
         return Controller.MAIN_MENU_ACTION;
     }
 
