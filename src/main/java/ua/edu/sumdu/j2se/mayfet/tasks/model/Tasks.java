@@ -20,20 +20,18 @@ public class Tasks {
     }
 
     public static SortedMap<LocalDateTime, Set<Task>> calendar(Iterable<Task> tasks, LocalDateTime start, LocalDateTime end) {
-        TreeMap<LocalDateTime, Set<Task>> sort = new TreeMap<LocalDateTime, Set<Task>>();
-        for (Task i : tasks) {
-            LocalDateTime timeNow = i.nextTimeAfter(start);
-            while ((!timeNow.isAfter(end) || timeNow.isEqual(end)) && (timeNow.isAfter(start) || timeNow.isEqual(start))) {
+        SortedMap<LocalDateTime, Set<Task>> sort = new TreeMap<>();
+        for (Task task : tasks) {
+            LocalDateTime timeNow = task.nextTimeAfter(start.minusNanos(1));
+            while (timeNow != null && !timeNow.isAfter(end)) {
                 if (sort.containsKey(timeNow)) {
-                    sort.get(timeNow).add(i);
+                    sort.get(timeNow).add(task);
                 } else if (!sort.containsKey(timeNow)) {
-                    HashSet<Task> set = new HashSet<Task>();
-                    set.add(i);
+                    Set<Task> set = new HashSet<>();
+                    set.add(task);
                     sort.put(timeNow, set);
-                } else {
-                    return null;
                 }
-                timeNow = i.nextTimeAfter(timeNow);
+                timeNow = task.nextTimeAfter(timeNow);
             }
         }
         return sort;

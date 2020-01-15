@@ -5,16 +5,30 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class CalendarView implements View {
+public class CalendarView implements View, TaskAction{
     @Override
     public int printInfo(AbstractTaskList taskList) {
         System.out.println("calendar view");
         return Controller.MAIN_MENU_ACTION;
     }
 
+    @Override
+    public int taskChoose() {
+        System.out.println("Put task type");
+        System.out.println("1 - check action date");
+        System.out.println("2 - back to menu");
+        int taskType = 0;
+        try {
+            taskType = Integer.parseInt(reader.readLine());
+        } catch (IOException | NumberFormatException e) {
+            return 2;
+        }
+        return taskType;
+    }
     public LocalDateTime timeTaskStart() {
         System.out.println("Put start date (example: 2020-04-22 12:30)");
         String date = "";
@@ -28,7 +42,7 @@ public class CalendarView implements View {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             start = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
-            return LocalDateTime.now().minusYears(999);
+            return LocalDateTime.ofEpochSecond(1,1, ZoneOffset.UTC).minusYears(999);
         }
         return start;
     }
