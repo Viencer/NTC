@@ -23,9 +23,7 @@ public class SaveLoadTasksView implements View, TaskAction {
     @Override
     public int taskChoose() {
         System.out.println("Put action type");
-        System.out.println("1 - save and exit");
-        System.out.println("2 - load");
-        System.out.println("3 - back to menu");
+        System.out.println("1 - save and exit,  2 - load,  3 - back to menu");
         int action = 0;
         try {
             action = Integer.parseInt(reader.readLine());

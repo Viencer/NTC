@@ -16,8 +16,7 @@ public class RemoveTaskView implements View, TaskAction {
     @Override
     public int taskChoose() {
         System.out.println("delete task?");
-        System.out.println("1 - delete");
-        System.out.println("2 - back to menu");
+        System.out.println("1 - delete,  2 - back to menu");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
@@ -28,7 +27,7 @@ public class RemoveTaskView implements View, TaskAction {
     }
 
     public int removeTask() {
-        System.out.println("Put index");
+        System.out.print("Put index");
         int index = 0;
         try {
             String indexIn = reader.readLine();

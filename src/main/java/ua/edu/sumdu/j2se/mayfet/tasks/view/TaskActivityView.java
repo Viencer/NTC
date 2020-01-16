@@ -10,9 +10,7 @@ public class TaskActivityView implements View, TaskAction {
     @Override
     public int taskChoose() {
         System.out.println("Task info");
-        System.out.println("Put action");
-        System.out.println("1 - set active/inactive mode");
-        System.out.println("2 - back to menu");
+        System.out.println("1 - set active/inactive mode,  2 - back to menu");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
