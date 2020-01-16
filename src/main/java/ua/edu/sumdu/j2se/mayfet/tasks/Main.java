@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Main {
+public class Main extends Thread {
     public static void main(String[] args) throws IOException {
         System.out.println("Manager started");
         AbstractTaskList taskList = new ArrayTaskList();

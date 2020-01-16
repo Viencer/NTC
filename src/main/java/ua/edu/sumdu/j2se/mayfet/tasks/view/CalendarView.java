@@ -51,7 +51,7 @@ public class CalendarView implements View, TaskAction {
     }
 
     public LocalDateTime timeTaskStart() {
-        System.out.print("Put start date (example: 2020-04-22 12:30)");
+        System.out.print("Put start date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime start;
         try {
@@ -69,7 +69,7 @@ public class CalendarView implements View, TaskAction {
     }
 
     public LocalDateTime timeTaskEnd() {
-        System.out.print("Put end date (example: 2020-04-22 12:30)");
+        System.out.print("Put end date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime end;
         try {

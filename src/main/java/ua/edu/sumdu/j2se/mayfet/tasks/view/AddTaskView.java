@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class AddTaskView implements View, TaskAction {
-    int nmm;
 
     @Override
     public int printInfo(AbstractTaskList taskList) {
