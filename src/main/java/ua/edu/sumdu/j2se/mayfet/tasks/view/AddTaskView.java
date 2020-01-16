@@ -34,7 +34,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public String nameTask() {
-        System.out.println("Put your name");
+        System.out.print("Put your name = ");
         String name = "";
         try {
             name = reader.readLine();
@@ -45,7 +45,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public LocalDateTime timeTask() {
-        System.out.println("Put date (example: 2020-04-08 12:30)");
+        System.out.print("Put date (example: 2020-04-08 12:30) = ");
         LocalDateTime time = null;
         String date = "";
         try {
@@ -63,7 +63,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public LocalDateTime timeTaskStart() {
-        System.out.println("Put start date (example: 2020-04-22 12:30)");
+        System.out.print("Put start date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime start = null;
         try {
@@ -81,7 +81,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public LocalDateTime timeTaskEnd() {
-        System.out.println("Put end date (example: 2020-04-22 12:30)");
+        System.out.print("Put end date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime end = null;
         try {
@@ -99,7 +99,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public int repeatInterval() {
-        System.out.println("Put interval");
+        System.out.print("Put interval = ");
         int interval = 0;
         try {
             String indexIn = reader.readLine();

@@ -6,14 +6,13 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
 import java.io.IOException;
 
-public class TaskInfoView implements View, TaskAction {
+public class TaskActivityView implements View, TaskAction {
     @Override
     public int taskChoose() {
         System.out.println("Task info");
         System.out.println("Put action");
-        System.out.println("1 - view task on index");
-        System.out.println("2 - set active/inactive mode");
-        System.out.println("3 - back to menu");
+        System.out.println("1 - set active/inactive mode");
+        System.out.println("2 - back to menu");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
@@ -32,7 +31,7 @@ public class TaskInfoView implements View, TaskAction {
     public int index() {
         int index = 0;
         try {
-            System.out.println("choose task on index");
+            System.out.print("choose task on index ");
             index = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
             return -1;
