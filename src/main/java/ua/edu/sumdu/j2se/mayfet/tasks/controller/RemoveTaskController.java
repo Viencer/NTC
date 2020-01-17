@@ -12,14 +12,14 @@ public class RemoveTaskController extends Controller {
     @Override
     public int process(AbstractTaskList taskList) {
         int taskChoose = ((RemoveTaskView) view).taskChoose();
-        if (taskChoose == ChooseNum.FIRST) {
-            int index = ((RemoveTaskView) view).removeTask();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() < index) {
+        if (taskChoose == ChooseNum.FIRST) { // если выбрали 1
+            int index = ((RemoveTaskView) view).removeTask(); // получаем индекс
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() < index) { // ловим ошибку
                 System.out.println(Errors.ERROR6);
                 return REMOVE_TASK_ACTION;
             }
-            taskList.remove(taskList.getTask(index));
-        } else if (taskChoose == ChooseNum.SECOND) {
+            taskList.remove(taskList.getTask(index)); // удаляем задание
+        } else if (taskChoose == ChooseNum.SECOND) { // если выбрали 2 то выходим в главное меню
             return MAIN_MENU_ACTION;
         } else {
             System.out.println(Errors.ERROR4);

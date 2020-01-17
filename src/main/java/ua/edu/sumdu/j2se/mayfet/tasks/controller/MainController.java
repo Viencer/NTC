@@ -23,7 +23,7 @@ public class MainController extends Controller {
         controllers.add(new SaveLoadTasksController(new SaveLoadTasksView(), Controller.SAVE_LOAD_TASKS));
         controllers.add(new TaskActivityController(new TaskActivityView(), Controller.TASK_ACTIVE));
         controllers.add(new ChangeTaskController(new ChangeTaskView(), Controller.TASK_CHANGE));
-        NotificationController notify = new NotificationController(new NotificationView(), taskList);
+        NotificationController notify = new NotificationController(new NotificationView(), taskList); // поток для уведомлений
         notify.setDaemon(true);
         notify.start();
     }

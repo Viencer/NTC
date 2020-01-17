@@ -37,7 +37,7 @@ public class NotificationController extends Thread {
                 }
             }
             try {
-                Thread.sleep(Duration.between(LocalDateTime.now(), now.plusMinutes(1)).toMillis());
+                Thread.sleep(Duration.between(LocalDateTime.now(), now.plusMinutes(1)).toMillis()); // ожидание
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

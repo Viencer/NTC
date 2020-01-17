@@ -17,25 +17,25 @@ public class TaskActivityController extends Controller {
     public int process(AbstractTaskList taskList) throws IOException {
         int index;
         int taskChoose = ((TaskActivityView) view).taskChoose();
-        if (taskChoose == ChooseNum.FIRST) {
+        if (taskChoose == ChooseNum.FIRST) {  // если выбрали 1, то получаем индекс
             index = ((TaskActivityView) view).index();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) {
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) { // ловим ошибку
                 System.out.println(Errors.ERROR6);
                 return TASK_ACTIVE;
             } else {
-                int mode = ((TaskActivityView) view).activityMode();
+                int mode = ((TaskActivityView) view).activityMode(); // выбираем какой сделать задачу
                 if (mode == -1) {
                     System.out.println(Errors.ERROR4);
                     return TASK_ACTIVE;
                 } else {
-                    if (mode == ChooseNum.FIRST) {
+                    if (mode == ChooseNum.FIRST) {  // выбираем 1 и активируем задачу
                         taskList.getTask(index).setActive(true);
-                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
+                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) { // если задача уже прошла, то удаляем её
                             taskList.remove(taskList.getTask(index));
                         }
-                    } else if (mode == ChooseNum.SECOND) {
+                    } else if (mode == ChooseNum.SECOND) {   // выбираем 2 и деактевируем задачу
                         taskList.getTask(index).setActive(false);
-                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {
+                        if ((taskList.getTask(index).getEndTime()).isBefore(LocalDateTime.now())) {// если задача уже прошла, то удаляем её
                             taskList.remove(taskList.getTask(index));
                         }
                     } else {
@@ -44,7 +44,7 @@ public class TaskActivityController extends Controller {
                     }
                 }
             }
-        } else if (taskChoose == ChooseNum.SECOND) {
+        } else if (taskChoose == ChooseNum.SECOND) { // выбираем 2 и выходим в главне меню
             return MAIN_MENU_ACTION;
         } else {
             System.out.println(Errors.ERROR4);

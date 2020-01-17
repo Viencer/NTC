@@ -53,25 +53,25 @@ public class ChangeTaskController extends Controller {
                     return TASK_CHANGE;
                 }
             } else if (!taskList.getTask(index).isRepeated()) {               //задание без повтора
-                int taskChooseNon = ((ChangeTaskView) view).taskChooseNon();   
-                if (taskChooseNon == ChooseNum.FIRST) {
-                    String titleNew = ((ChangeTaskView) view).titleNew();
+                int taskChooseNon = ((ChangeTaskView) view).taskChooseNon();
+                if (taskChooseNon == ChooseNum.FIRST) { // если выбрали 2.1
+                    String titleNew = ((ChangeTaskView) view).titleNew();  // изменяем имя
                     taskList.getTask(index).setTitle(titleNew);
-                } else if (taskChooseNon == ChooseNum.SECOND) {
-                    LocalDateTime time = ((ChangeTaskView) view).time();
-                    if (time.isBefore(LocalDateTime.now())) {
+                } else if (taskChooseNon == ChooseNum.SECOND) {  // если выбрали 2.2
+                    LocalDateTime time = ((ChangeTaskView) view).time();  // изменяем время
+                    if (time.isBefore(LocalDateTime.now())) {   //ловим ошибку
                         System.out.println(Errors.ERROR1);
                         return TASK_CHANGE;
                     }
                     taskList.getTask(index).setTime(time);
-                } else if (taskChooseNon == ChooseNum.THIRD) {
+                } else if (taskChooseNon == ChooseNum.THIRD) {   //3.3 выходим в меню
                     return TASK_CHANGE;
                 } else {
                     System.out.println(Errors.ERROR4);
                     return TASK_CHANGE;
                 }
             }
-        } else if (taskChoose == ChooseNum.SECOND) {
+        } else if (taskChoose == ChooseNum.SECOND) {       // если в начале выбрали 2
             return MAIN_MENU_ACTION;
         } else {
             System.out.println(Errors.ERROR4);
