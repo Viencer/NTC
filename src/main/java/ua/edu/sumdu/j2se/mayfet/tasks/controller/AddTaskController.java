@@ -39,7 +39,7 @@ public class AddTaskController extends Controller {
                 System.out.println(Errors.ERROR2);
                 return ADD_TASK_ACTION;
             }
-            if (interval == Integer.MAX_VALUE) {
+            if (interval == Integer.MAX_VALUE || interval <= 0) {
                 System.out.println(Errors.ERROR3);
                 return ADD_TASK_ACTION;
             }

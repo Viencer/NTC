@@ -19,7 +19,7 @@ public class TaskActivityController extends Controller {
         int taskChoose = ((TaskActivityView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             index = ((TaskActivityView) view).index();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0) {
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) {
                 System.out.println(Errors.ERROR6);
                 return TASK_ACTIVE;
             } else {
@@ -39,7 +39,7 @@ public class TaskActivityController extends Controller {
                             taskList.remove(taskList.getTask(index));
                         }
                     } else {
-                        System.out.println(Errors.ERROR3);
+                        System.out.println(Errors.ERROR4);
                         return TASK_ACTIVE;
                     }
                 }

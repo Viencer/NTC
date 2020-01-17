@@ -17,7 +17,7 @@ public class ChangeTaskController extends Controller {
         int taskChoose = ((ChangeTaskView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             int index = ((ChangeTaskView) view).index();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0) {
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) {
                 System.out.println(Errors.ERROR6);
                 return TASK_CHANGE;
             }
@@ -41,7 +41,7 @@ public class ChangeTaskController extends Controller {
                     taskList.getTask(index).setEndTime(endTime);
                 } else if (taskChooseRep == ChooseNum.THIRD) {
                     int interval = ((ChangeTaskView) view).interval();
-                    if (interval == Integer.MAX_VALUE) {
+                    if (interval == Integer.MAX_VALUE || interval <= 0) {
                         System.out.println(Errors.ERROR3);
                         return TASK_CHANGE;
                     }

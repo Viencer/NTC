@@ -14,7 +14,7 @@ public class RemoveTaskController extends Controller {
         int taskChoose = ((RemoveTaskView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             int index = ((RemoveTaskView) view).removeTask();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0) {
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() < index) {
                 System.out.println(Errors.ERROR6);
                 return REMOVE_TASK_ACTION;
             }
