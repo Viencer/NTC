@@ -22,6 +22,7 @@ public class MainController extends Controller {
         controllers.add(new CalendarController(new CalendarView(), Controller.CALENDAR_ACTION));
         controllers.add(new SaveLoadTasksController(new SaveLoadTasksView(), Controller.SAVE_LOAD_TASKS));
         controllers.add(new TaskActivityController(new TaskActivityView(), Controller.TASK_INFO));
+        controllers.add(new ChangeTaskController(new ChangeTaskView(), Controller.TASK_CHANGE));
         NotificationController notify = new NotificationController(new NotificationView(), taskList);
         notify.setDaemon(true);
         notify.start();
@@ -30,7 +31,7 @@ public class MainController extends Controller {
     @Override
     public int process(AbstractTaskList taskList) throws IOException {
         int action = view.printInfo(taskList);
-        if (action == 1 || action == 2 || action == 3 || action == 4 || action == 5 || action == 6 || action == 7) {
+        if (action == 1 || action == 2 || action == 3 || action == 4 || action == 5 || action == 6 || action == 7|| action == 8) {
             for (; ; ) {
                 for (Controller controller : controllers) {
                     if (controller.canProcess(action)) {

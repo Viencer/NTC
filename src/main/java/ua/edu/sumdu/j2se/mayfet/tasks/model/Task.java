@@ -109,6 +109,10 @@ public class Task implements Serializable, Cloneable {
         return repeated;
     }
 
+    public void setRepeatInterval(int repeatInterval) {
+        this.repeatInterval = repeatInterval;
+    }
+
     public LocalDateTime nextTimeAfter(LocalDateTime current) {
         if (isActive()) {
             if (getStartTime().isAfter(current)) {//>

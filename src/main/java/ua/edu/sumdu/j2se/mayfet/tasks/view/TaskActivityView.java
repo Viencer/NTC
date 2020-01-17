@@ -1,6 +1,5 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.view;
 
-import ua.edu.sumdu.j2se.mayfet.tasks.controller.ChooseNum;
 import ua.edu.sumdu.j2se.mayfet.tasks.controller.Controller;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 
@@ -9,7 +8,7 @@ import java.io.IOException;
 public class TaskActivityView implements View, TaskAction {
     @Override
     public int taskChoose() {
-        System.out.println("Task info");
+        System.out.println("Task activity");
         System.out.println("1 - set active/inactive mode,  2 - back to menu");
         int taskType = 0;
         try {
@@ -22,7 +21,7 @@ public class TaskActivityView implements View, TaskAction {
 
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("Task info closed");
+        System.out.println("Task activity setting closed");
         return Controller.MAIN_MENU_ACTION;
     }
 

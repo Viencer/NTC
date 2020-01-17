@@ -16,7 +16,8 @@ public class MainView implements View {
         System.out.println("4 calendar");
         System.out.println("5 save/load tasks");
         System.out.println("6 change activity");
-        System.out.println("7 exit");
+        System.out.println("7 change task");
+        System.out.println("8 exit");
         int variant = 0;
         try {
             variant = Integer.parseInt(reader.readLine());
