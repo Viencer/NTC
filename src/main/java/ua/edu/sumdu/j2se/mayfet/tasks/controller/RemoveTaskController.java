@@ -14,15 +14,15 @@ public class RemoveTaskController extends Controller {
         int taskChoose = ((RemoveTaskView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             int index = ((RemoveTaskView) view).removeTask();
-            if (index >= taskList.size()) {
-                System.out.println("ERROR UNEXPECTED INDEX");
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0) {
+                System.out.println(Errors.ERROR6);
                 return REMOVE_TASK_ACTION;
             }
             taskList.remove(taskList.getTask(index));
         } else if (taskChoose == ChooseNum.SECOND) {
             return MAIN_MENU_ACTION;
         } else {
-            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
+            System.out.println(Errors.ERROR4);
             return Controller.REMOVE_TASK_ACTION;
         }
         return view.printInfo(taskList);

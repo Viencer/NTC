@@ -6,8 +6,6 @@ import ua.edu.sumdu.j2se.mayfet.tasks.view.AddTaskView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
 
 public class AddTaskController extends Controller {
 
@@ -23,7 +21,7 @@ public class AddTaskController extends Controller {
             String name = ((AddTaskView) view).nameTask();
             LocalDateTime time = ((AddTaskView) view).timeTask();
             if (time.isBefore(LocalDateTime.now())) {
-                System.out.println("ERROR UNEXPECTED TIME");
+                System.out.println(Errors.ERROR1);
                 return ADD_TASK_ACTION;
             }
             task = new Task(name, time);
@@ -34,15 +32,15 @@ public class AddTaskController extends Controller {
             LocalDateTime timeEnd = ((AddTaskView) view).timeTaskEnd();
             int interval = ((AddTaskView) view).repeatInterval();
             if (timeStart.isBefore(LocalDateTime.now())) {
-                System.out.println("ERROR UNEXPECTED TIME");
+                System.out.println(Errors.ERROR1);
                 return ADD_TASK_ACTION;
             }
             if ((timeEnd.isBefore(LocalDateTime.now()))) {
-                System.out.println("ERROR UNEXPECTED END TIME");
+                System.out.println(Errors.ERROR2);
                 return ADD_TASK_ACTION;
             }
             if (interval == Integer.MAX_VALUE) {
-                System.out.println("ERROR UNEXPECTED INTERVAL");
+                System.out.println(Errors.ERROR3);
                 return ADD_TASK_ACTION;
             }
             task = new Task(name, timeStart, timeEnd, interval);
@@ -50,7 +48,7 @@ public class AddTaskController extends Controller {
         } else if (taskChoose == ChooseNum.THIRD) {
             return Controller.MAIN_MENU_ACTION;
         } else {
-            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
+            System.out.println(Errors.ERROR4);
             return Controller.ADD_TASK_ACTION;
         }
         return view.printInfo(taskList);

@@ -17,7 +17,7 @@ public class CalendarController extends Controller {
         } else if (taskChoose == ChooseNum.SECOND) {
             return MAIN_MENU_ACTION;
         } else {
-            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
+            System.out.println(Errors.ERROR4);
             return CALENDAR_ACTION;
         }
     }

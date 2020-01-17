@@ -19,14 +19,14 @@ public class TaskActivityController extends Controller {
         int taskChoose = ((TaskActivityView) view).taskChoose();
         if (taskChoose == ChooseNum.FIRST) {
             index = ((TaskActivityView) view).index();
-            if (index >= taskList.size() || index == -1) {
-                System.out.println("ERROR UNEXPECTED INDEX");
-                return TASK_INFO;
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0) {
+                System.out.println(Errors.ERROR6);
+                return TASK_ACTIVE;
             } else {
                 int mode = ((TaskActivityView) view).activityMode();
                 if (mode == -1) {
-                    System.out.println("ERROR UNEXPECTED NUM");
-                    return TASK_INFO;
+                    System.out.println(Errors.ERROR4);
+                    return TASK_ACTIVE;
                 } else {
                     if (mode == ChooseNum.FIRST) {
                         taskList.getTask(index).setActive(true);
@@ -39,16 +39,16 @@ public class TaskActivityController extends Controller {
                             taskList.remove(taskList.getTask(index));
                         }
                     } else {
-                        System.out.println("ERROR UNEXPECTED INDEX");
-                        return TASK_INFO;
+                        System.out.println(Errors.ERROR3);
+                        return TASK_ACTIVE;
                     }
                 }
             }
         } else if (taskChoose == ChooseNum.SECOND) {
             return MAIN_MENU_ACTION;
         } else {
-            System.out.println("ERROR YOU CHOOSE WRONG NUMBER");
-            return TASK_INFO;
+            System.out.println(Errors.ERROR4);
+            return TASK_ACTIVE;
         }
         return view.printInfo(taskList);
     }

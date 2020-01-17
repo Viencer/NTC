@@ -96,7 +96,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public int repeatInterval() {
-        System.out.print("Put interval = ");
+        System.out.print("Put interval in minutes = ");
         int interval = 0;
         try {
             String indexIn = reader.readLine();

@@ -31,7 +31,7 @@ public class TaskActivityView implements View, TaskAction {
             System.out.print("choose task on index ");
             index = Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return -1;
+            return Integer.MAX_VALUE;
         }
         return index;
     }
