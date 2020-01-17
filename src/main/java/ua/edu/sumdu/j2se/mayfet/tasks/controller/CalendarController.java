@@ -11,7 +11,7 @@ public class CalendarController extends Controller {
 
     @Override
     public int process(AbstractTaskList taskList) {
-        int taskChoose = ((CalendarView) view).taskChoose();
+        int taskChoose = ((CalendarView) view).taskChoose(); // Здесь ловим ошибки
         if (taskChoose == ChooseNum.FIRST) {
             return view.printInfo(taskList);
         } else if (taskChoose == ChooseNum.SECOND) {

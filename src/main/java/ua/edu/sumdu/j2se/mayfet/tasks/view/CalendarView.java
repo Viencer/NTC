@@ -17,17 +17,17 @@ public class CalendarView implements View, TaskAction {
     @Override
     public int printInfo(AbstractTaskList taskList) {
         LocalDateTime startTime = timeTaskStart();
-        LocalDateTime endTime = timeTaskEnd();
+        LocalDateTime endTime = timeTaskEnd();   // ловим ошибки
         if ((startTime.isEqual(LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999)))) {
             System.out.println("ERROR UNEXPECTED TIME");
             return Controller.CALENDAR_ACTION;
         }
-        if ((endTime.isBefore(LocalDateTime.now()))) {
+        if ((endTime.isBefore(LocalDateTime.now()))) {          // ловим ошибки
             System.out.println("ERROR UNEXPECTED END TIME");
             return Controller.CALENDAR_ACTION;
         }
         System.out.println("repeated tasks: ");
-        SortedMap<LocalDateTime, Set<Task>> calendarView = Tasks.calendar(taskList, startTime, endTime);
+        SortedMap<LocalDateTime, Set<Task>> calendarView = Tasks.calendar(taskList, startTime, endTime); // Вывод времени действия
         for (SortedMap.Entry<LocalDateTime, Set<Task>> element : calendarView.entrySet()) {
             for (Task task : element.getValue()) {
                 System.out.print("title = " + task.getTitle() + "-->");
@@ -38,7 +38,7 @@ public class CalendarView implements View, TaskAction {
     }
 
     @Override
-    public int taskChoose() {
+    public int taskChoose() {                               //выбор действия
         System.out.println("Put task type");
         System.out.println("1 - check action date,  2 - back to menu");
         int taskType = 0;
@@ -50,7 +50,7 @@ public class CalendarView implements View, TaskAction {
         return taskType;
     }
 
-    public LocalDateTime timeTaskStart() {
+    public LocalDateTime timeTaskStart() {                            //ввод времени начала
         System.out.print("Put start date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime start;
@@ -68,7 +68,7 @@ public class CalendarView implements View, TaskAction {
         return start;
     }
 
-    public LocalDateTime timeTaskEnd() {
+    public LocalDateTime timeTaskEnd() {                    //ввод времени конца
         System.out.print("Put end date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime end;

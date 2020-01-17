@@ -18,7 +18,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     @Override
-    public int taskChoose() {
+    public int taskChoose() {  //выбор пункта меню
         System.out.println("Put task type");
         System.out.println("1 - non repeatable,  2 - repeatable,  3 - back to menu");
         int taskType = 0;
@@ -30,7 +30,7 @@ public class AddTaskView implements View, TaskAction {
         return taskType;
     }
 
-    public String nameTask() {
+    public String nameTask() {    //ввод имени
         System.out.print("Put your name = ");
         String name = "";
         try {
@@ -41,7 +41,7 @@ public class AddTaskView implements View, TaskAction {
         return name;
     }
 
-    public LocalDateTime timeTask() {
+    public LocalDateTime timeTask() {                                 //ввод времени
         System.out.print("Put date (example: 2020-04-08 12:30) = ");
         LocalDateTime time = null;
         String date = "";
@@ -59,7 +59,7 @@ public class AddTaskView implements View, TaskAction {
         return time;
     }
 
-    public LocalDateTime timeTaskStart() {
+    public LocalDateTime timeTaskStart() {                          //ввод времени начала
         System.out.print("Put start date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime start = null;
@@ -77,7 +77,7 @@ public class AddTaskView implements View, TaskAction {
         return start;
     }
 
-    public LocalDateTime timeTaskEnd() {
+    public LocalDateTime timeTaskEnd() {                                //ввод времени конца
         System.out.print("Put end date (example: 2020-04-22 12:30) = ");
         String date = "";
         LocalDateTime end = null;
@@ -95,7 +95,7 @@ public class AddTaskView implements View, TaskAction {
         return end;
     }
 
-    public int repeatInterval() {
+    public int repeatInterval() {                            //ввод интервала
         System.out.print("Put interval in minutes = ");
         int interval = 0;
         try {

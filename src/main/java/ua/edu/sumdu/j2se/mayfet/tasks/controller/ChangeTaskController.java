@@ -14,38 +14,38 @@ public class ChangeTaskController extends Controller {
 
     @Override
     public int process(AbstractTaskList taskList) throws IOException {
-        int taskChoose = ((ChangeTaskView) view).taskChoose();
-        if (taskChoose == ChooseNum.FIRST) {
-            int index = ((ChangeTaskView) view).index();
-            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) {
+        int taskChoose = ((ChangeTaskView) view).taskChoose();         // выбираем действие
+        if (taskChoose == ChooseNum.FIRST) {  // если нажали 1
+            int index = ((ChangeTaskView) view).index(); // получаем индекс задания
+            if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) { // ловим ошибку
                 System.out.println(Errors.ERROR6);
                 return TASK_CHANGE;
             }
-            if (taskList.getTask(index).isRepeated()) {                         //задание, которое повтор
-                int taskChooseRep = ((ChangeTaskView) view).taskChooseRep();
-                if (taskChooseRep == ChooseNum.FIRST) {
+            if (taskList.getTask(index).isRepeated()) {                      //задание, которое повтор
+                int taskChooseRep = ((ChangeTaskView) view).taskChooseRep();  // вывод меню для повтор. задания
+                if (taskChooseRep == ChooseNum.FIRST) {  //если выбор 1.1
                     String titleNew = ((ChangeTaskView) view).titleNew();
-                    taskList.getTask(index).setTitle(titleNew);
-                } else if (taskChooseRep == ChooseNum.SECOND) {
-                    LocalDateTime startTime = ((ChangeTaskView) view).startTime();
-                    if (startTime.isBefore(LocalDateTime.now())) {
+                    taskList.getTask(index).setTitle(titleNew);               // меняем имя
+                } else if (taskChooseRep == ChooseNum.SECOND) {     //если выбор 1.2
+                    LocalDateTime startTime = ((ChangeTaskView) view).startTime();   // вводим время старта
+                    if (startTime.isBefore(LocalDateTime.now())) {       // ловим ошибку
                         System.out.println(Errors.ERROR1);
                         return TASK_CHANGE;
                     }
-                    LocalDateTime endTime = ((ChangeTaskView) view).endTime();
-                    if ((endTime.isBefore(LocalDateTime.now()))) {
+                    LocalDateTime endTime = ((ChangeTaskView) view).endTime(); // вводим время конца
+                    if ((endTime.isBefore(LocalDateTime.now()))) {         // ловим ошибку
                         System.out.println(Errors.ERROR2);
                         return TASK_CHANGE;
                     }
-                    taskList.getTask(index).setStartTime(startTime);
+                    taskList.getTask(index).setStartTime(startTime);   // изменяем время
                     taskList.getTask(index).setEndTime(endTime);
-                } else if (taskChooseRep == ChooseNum.THIRD) {
-                    int interval = ((ChangeTaskView) view).interval();
-                    if (interval == Integer.MAX_VALUE || interval <= 0) {
+                } else if (taskChooseRep == ChooseNum.THIRD) {  // если выбрали 1.3
+                    int interval = ((ChangeTaskView) view).interval();    // вводим интевал
+                    if (interval == Integer.MAX_VALUE || interval <= 0) {  // ловим ошибку
                         System.out.println(Errors.ERROR3);
                         return TASK_CHANGE;
                     }
-                    taskList.getTask(index).setRepeatInterval(interval);
+                    taskList.getTask(index).setRepeatInterval(interval);  // изменяем интервал
                 } else if (taskChooseRep == ChooseNum.FOURTH) {
                     return TASK_CHANGE;
                 } else {
@@ -53,7 +53,7 @@ public class ChangeTaskController extends Controller {
                     return TASK_CHANGE;
                 }
             } else if (!taskList.getTask(index).isRepeated()) {               //задание без повтора
-                int taskChooseNon = ((ChangeTaskView) view).taskChooseNon();
+                int taskChooseNon = ((ChangeTaskView) view).taskChooseNon();   
                 if (taskChooseNon == ChooseNum.FIRST) {
                     String titleNew = ((ChangeTaskView) view).titleNew();
                     taskList.getTask(index).setTitle(titleNew);
