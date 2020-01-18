@@ -30,13 +30,13 @@ public class SaveLoadTasksController extends Controller {
                 String nameFile = ((SaveLoadTasksView) view).fileName();   // ввод название файла для загрузки
                 TaskIO.read(taskList, new FileReader("saves/" + nameFile + ".json"));
             } catch (IOException e) {
-                System.out.println(Errors.ERROR5);
+                System.out.println(Errors.FILE_NOT_FOUND);
                 return Controller.SAVE_LOAD_TASKS;
             }
         } else if (taskChoose == ChooseNum.THIRD) {  // выход в главное меню
             return Controller.MAIN_MENU_ACTION;
         } else {
-            System.out.println(Errors.ERROR4);
+            System.out.println(Errors.WRONG_NUMBER);
             return Controller.SAVE_LOAD_TASKS;
         }
         return view.printInfo(taskList);

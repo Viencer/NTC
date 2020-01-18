@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
 
 public class NotificationView {
     public int printInfo(LocalDateTime localDateTime, String string) {
-        System.out.println("\nNOTIFICATION\n");
-        System.out.println("Task " + string + " must be done. Current time is: " + localDateTime);
+        System.out.println("\n#############################################\n");
+        System.out.println("\nЗадание " + string + " должно быть выполнено. Время: " + localDateTime + "\n");
+        System.out.println("\n#############################################\n");
         return Controller.MAIN_MENU_ACTION;
     }
 }

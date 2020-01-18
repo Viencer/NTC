@@ -19,14 +19,13 @@ public class CalendarView implements View, TaskAction {
         LocalDateTime startTime = timeTaskStart();
         LocalDateTime endTime = timeTaskEnd();   // ловим ошибки
         if ((startTime.isEqual(LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999)))) {
-            System.out.println("ERROR UNEXPECTED TIME");
+            System.out.println("ОШИБКА НЕОЖИДАННОЕ ВРЕМЯ");
             return Controller.CALENDAR_ACTION;
         }
         if ((endTime.isBefore(LocalDateTime.now()))) {          // ловим ошибки
-            System.out.println("ERROR UNEXPECTED END TIME");
+            System.out.println("ОШИБКА НЕОЖИДАННОЕ ВРЕМЯ ОКОНЧАНИЯ");
             return Controller.CALENDAR_ACTION;
         }
-        System.out.println("repeated tasks: ");
         SortedMap<LocalDateTime, Set<Task>> calendarView = Tasks.calendar(taskList, startTime, endTime); // Вывод времени действия
         for (SortedMap.Entry<LocalDateTime, Set<Task>> element : calendarView.entrySet()) {
             for (Task task : element.getValue()) {
@@ -39,8 +38,8 @@ public class CalendarView implements View, TaskAction {
 
     @Override
     public int taskChoose() {                               //выбор действия
-        System.out.println("Put task type");
-        System.out.println("1 - check action date,  2 - back to menu");
+        System.out.println("введите тип задачи");
+        System.out.println("1 - проверить активность задач,  2 - выход в меню");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
@@ -51,9 +50,18 @@ public class CalendarView implements View, TaskAction {
     }
 
     public LocalDateTime timeTaskStart() {                            //ввод времени начала
-        System.out.print("Put start date (example: 2020-04-22 12:30) = ");
+        System.out.print("введите дату начала (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
+    }
+
+    public LocalDateTime timeTaskEnd() {
+        System.out.print("введите дату окончания (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");//ввод времени конца
+        return timePut();
+    }
+
+    private LocalDateTime timePut() {
         String date = "";
-        LocalDateTime start;
+        LocalDateTime time = null;
         try {
             date = reader.readLine();
         } catch (IOException | NumberFormatException e) {
@@ -61,28 +69,10 @@ public class CalendarView implements View, TaskAction {
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            start = LocalDateTime.parse(date, formatter);
+            time = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
             return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
         }
-        return start;
-    }
-
-    public LocalDateTime timeTaskEnd() {                    //ввод времени конца
-        System.out.print("Put end date (example: 2020-04-22 12:30) = ");
-        String date = "";
-        LocalDateTime end;
-        try {
-            date = reader.readLine();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            end = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.now().minusYears(999);
-        }
-        return end;
+        return time;
     }
 }

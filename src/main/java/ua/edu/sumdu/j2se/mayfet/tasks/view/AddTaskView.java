@@ -13,14 +13,14 @@ public class AddTaskView implements View, TaskAction {
 
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("New task was added");
-        return Controller.MAIN_MENU_ACTION;
+        System.out.println("Задание было добавлено");
+        return Controller.ADD_TASK_ACTION;
     }
 
     @Override
     public int taskChoose() {  //выбор пункта меню
-        System.out.println("Put task type");
-        System.out.println("1 - non repeatable,  2 - repeatable,  3 - back to menu");
+        System.out.println("введите тип задачи");
+        System.out.println("1 - не повторяющаяся,  2 - повторяющаяся,  3 - выход в меню");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
@@ -31,7 +31,7 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public String nameTask() {    //ввод имени
-        System.out.print("Put your name = ");
+        System.out.print("введите имя задачи = ");
         String name = "";
         try {
             name = reader.readLine();
@@ -42,61 +42,22 @@ public class AddTaskView implements View, TaskAction {
     }
 
     public LocalDateTime timeTask() {                                 //ввод времени
-        System.out.print("Put date (example: 2020-04-08 12:30) = ");
-        LocalDateTime time = null;
-        String date = "";
-        try {
-            date = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            time = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.now().minusYears(999);
-        }
-        return time;
+        System.out.print("введите дату (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public LocalDateTime timeTaskStart() {                          //ввод времени начала
-        System.out.print("Put start date (example: 2020-04-22 12:30) = ");
-        String date = "";
-        LocalDateTime start = null;
-        try {
-            date = reader.readLine();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            start = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
-        }
-        return start;
+        System.out.print("введите дату начала (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public LocalDateTime timeTaskEnd() {                                //ввод времени конца
-        System.out.print("Put end date (example: 2020-04-22 12:30) = ");
-        String date = "";
-        LocalDateTime end = null;
-        try {
-            date = reader.readLine();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            end = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return end = LocalDateTime.now().minusSeconds(1);
-        }
-        return end;
+        System.out.print("введите дату окончания (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public int repeatInterval() {                            //ввод интервала
-        System.out.print("Put interval in minutes = ");
+        System.out.print("введите интервал в минутах = ");
         int interval = 0;
         try {
             String indexIn = reader.readLine();
@@ -105,6 +66,23 @@ public class AddTaskView implements View, TaskAction {
             interval = Integer.MAX_VALUE;
         }
         return interval;
+    }
+
+    private LocalDateTime timePut() {
+        String date = "";
+        LocalDateTime time = null;
+        try {
+            date = reader.readLine();
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            time = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
+        }
+        return time;
     }
 
 }

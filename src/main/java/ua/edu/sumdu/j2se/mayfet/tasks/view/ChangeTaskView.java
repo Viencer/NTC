@@ -13,118 +13,47 @@ public class ChangeTaskView implements View, TaskAction {
 
     @Override
     public int taskChoose() {
-        System.out.println("1 - change task parameter,  2 - main menu ");
-        int taskType = 0;
-        try {
-            taskType = Integer.parseInt(reader.readLine());
-        } catch (IOException | NumberFormatException e) {
-            return -1;
-        }
-        return taskType;
+        System.out.println("1 - изменить параметр задачи,  2 - выход в меню ");
+        return taskChooseAll();
     }
 
     public int taskChooseNon() {
-        System.out.println("1 - change name,  2 - change time,  3 - back");
-        int taskType = 0;
-        try {
-            taskType = Integer.parseInt(reader.readLine());
-        } catch (IOException | NumberFormatException e) {
-            return -1;
-        }
-        return taskType;
+        System.out.println("1 - изменить имя,  2 - изменить время,  3 - назад");
+        return taskChooseAll();
     }
 
     public int taskChooseRep() {
-        System.out.println("1 - change name,  2 - change time,  3 - change interval,  4-back");
-        int taskType = 0;
-        try {
-            taskType = Integer.parseInt(reader.readLine());
-        } catch (IOException | NumberFormatException e) {
-            return -1;
-        }
-        return taskType;
+        System.out.println("1 - изменить имя,  2 - изменить время,  3 - изменить интервал,  4 - назад");
+        return taskChooseAll();
     }
 
     public int index() {
-        System.out.print("Put task index to change: ");
-        int index = 0;
-        try {
-            String indexIn = reader.readLine();
-            index = Integer.parseInt(indexIn);
-        } catch (IOException | NumberFormatException e) {
-            return Integer.MAX_VALUE;
-        }
-        return index;
+        System.out.print("введите id задачи: ");
+        return numCode();
     }
 
     public int interval() {
-        System.out.print("Put new interval: ");
-        int interval = 0;
-        try {
-            String inter = reader.readLine();
-            interval = Integer.parseInt(inter);
-        } catch (IOException | NumberFormatException e) {
-            return Integer.MAX_VALUE;
-        }
-        return interval;
+        System.out.print("введите новый интервал: ");
+        return numCode();
     }
 
     public LocalDateTime time() {
-        System.out.print("Put date (example: 2020-04-08 12:30) = ");
-        LocalDateTime time = null;
-        String date = "";
-        try {
-            date = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            time = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.now().minusYears(999);
-        }
-        return time;
+        System.out.print("введите дату (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public LocalDateTime startTime() {
-        System.out.print("Put start date (example: 2020-04-22 12:30) = ");
-        String date = "";
-        LocalDateTime start = null;
-        try {
-            date = reader.readLine();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            start = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
-        }
-        return start;
+        System.out.print("введите дату начала (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public LocalDateTime endTime() {
-        System.out.print("Put end date (example: 2020-04-22 12:30) = ");
-        String date = "";
-        LocalDateTime end = null;
-        try {
-            date = reader.readLine();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            end = LocalDateTime.parse(date, formatter);
-        } catch (DateTimeParseException e) {
-            return end = LocalDateTime.now().minusSeconds(1);
-        }
-        return end;
+        System.out.print("введите дату окончания (пример ГГ-ММ-ДД ЧЧ:ММ = 2020-04-08 12:30) = ");
+        return timePut();
     }
 
     public String titleNew() {
-        System.out.print("Put your name = ");
+        System.out.print("введите новое имя ");
         String name = "";
         try {
             name = reader.readLine();
@@ -132,6 +61,44 @@ public class ChangeTaskView implements View, TaskAction {
             e.printStackTrace();
         }
         return name;
+    }
+
+    private LocalDateTime timePut() {
+        String date = "";
+        LocalDateTime time = null;
+        try {
+            date = reader.readLine();
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            time = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            return LocalDateTime.ofEpochSecond(1, 1, ZoneOffset.UTC).minusYears(999);
+        }
+        return time;
+    }
+
+    private int taskChooseAll() {
+        int taskType = 0;
+        try {
+            taskType = Integer.parseInt(reader.readLine());
+        } catch (IOException | NumberFormatException e) {
+            return -1;
+        }
+        return taskType;
+    }
+
+    private int numCode() {
+        int num = 0;
+        try {
+            String indexIn = reader.readLine();
+            num = Integer.parseInt(indexIn);
+        } catch (IOException | NumberFormatException e) {
+            return Integer.MAX_VALUE;
+        }
+        return num;
     }
 
     @Override

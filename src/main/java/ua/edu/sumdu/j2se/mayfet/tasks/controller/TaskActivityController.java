@@ -20,12 +20,12 @@ public class TaskActivityController extends Controller {
         if (taskChoose == ChooseNum.FIRST) {  // если выбрали 1, то получаем индекс
             index = ((TaskActivityView) view).index();
             if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) { // ловим ошибку
-                System.out.println(Errors.ERROR6);
+                System.out.println(Errors.UNEXPECTED_INDEX);
                 return TASK_ACTIVE;
             } else {
                 int mode = ((TaskActivityView) view).activityMode(); // выбираем какой сделать задачу
                 if (mode == -1) {
-                    System.out.println(Errors.ERROR4);
+                    System.out.println(Errors.WRONG_NUMBER);
                     return TASK_ACTIVE;
                 } else {
                     if (mode == ChooseNum.FIRST) {  // выбираем 1 и активируем задачу
@@ -39,7 +39,7 @@ public class TaskActivityController extends Controller {
                             taskList.remove(taskList.getTask(index));
                         }
                     } else {
-                        System.out.println(Errors.ERROR4);
+                        System.out.println(Errors.WRONG_NUMBER);
                         return TASK_ACTIVE;
                     }
                 }
@@ -47,7 +47,7 @@ public class TaskActivityController extends Controller {
         } else if (taskChoose == ChooseNum.SECOND) { // выбираем 2 и выходим в главне меню
             return MAIN_MENU_ACTION;
         } else {
-            System.out.println(Errors.ERROR4);
+            System.out.println(Errors.WRONG_NUMBER);
             return TASK_ACTIVE;
         }
         return view.printInfo(taskList);

@@ -6,17 +6,17 @@ import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 public class CreateNewTaskListView implements View {
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("task View");
+        System.out.println("Журнал");
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.getTask(i).isRepeated()) {
-                System.out.println("id " + i + ". Task name = " +
-                        taskList.getTask(i).getTitle() + ", start time = " + taskList.getTask(i).getStartTime() +
-                        ", end time = " + taskList.getTask(i).getEndTime() +
-                        ", repeat interval = " + taskList.getTask(i).getRepeatInterval() + ", active = " +
+                System.out.println("id " + i + ". Имя задачи = " +
+                        taskList.getTask(i).getTitle() + ", время начала = " + taskList.getTask(i).getStartTime() +
+                        ", время окончания = " + taskList.getTask(i).getEndTime() +
+                        ", интервал = " + taskList.getTask(i).getRepeatInterval() + ", активность = " +
                         taskList.getTask(i).isActive());
             } else {
-                System.out.println("id " + i + ". Task name = " + taskList.getTask(i).getTitle() +
-                        ", time = " + taskList.getTask(i).getTime() + ", active = " +
+                System.out.println("id " + i + ". Имя задачи = " + taskList.getTask(i).getTitle() +
+                        ", время = " + taskList.getTask(i).getTime() + ", активность = " +
                         taskList.getTask(i).isActive());
             }
         }

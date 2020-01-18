@@ -9,15 +9,15 @@ public class MainView implements View {
 
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("choose activity");
-        System.out.println("1 check tasks");
-        System.out.println("2 add new task");
-        System.out.println("3 remove task");
-        System.out.println("4 calendar");
-        System.out.println("5 save/load tasks");
-        System.out.println("6 change activity");
-        System.out.println("7 change task");
-        System.out.println("8 exit");
+        System.out.println("Выберите действие");
+        System.out.println("1 Журнал заданий");
+        System.out.println("2 добавить новую задачу");
+        System.out.println("3 удалить задачу");
+        System.out.println("4 календарь");
+        System.out.println("5 сохранить/загрузить задачи");
+        System.out.println("6 изменить активность");
+        System.out.println("7 изменить задачу");
+        System.out.println("8 выход");
         int variant = 0;
         try {
             variant = Integer.parseInt(reader.readLine());

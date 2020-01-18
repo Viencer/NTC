@@ -63,7 +63,7 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task> {
         return end.getData();
     }
 
-    public class Node {
+    public static class Node {
         public Task data;
         public Node next;
 
@@ -186,7 +186,7 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task> {
     public Stream<Task> getStream() {
         ArrayTaskList list = new ArrayTaskList();
         for (int i = 0; i < size(); i++) {
-           list.add(getTask(i));
+            list.add(getTask(i));
         }
         return list.getStream();
     }

@@ -9,14 +9,14 @@ import java.io.IOException;
 public class RemoveTaskView implements View, TaskAction {
     @Override
     public int printInfo(AbstractTaskList taskList) {
-        System.out.println("task removed");
+        System.out.println("задание удалено");
         return Controller.MAIN_MENU_ACTION;
     }
 
     @Override
     public int taskChoose() {
-        System.out.println("delete task?");
-        System.out.println("1 - delete,  2 - back to menu");
+        System.out.println("удалить задание?");
+        System.out.println("1 - удалить,  2 - назад в меню");
         int taskType = 0;
         try {
             taskType = Integer.parseInt(reader.readLine());
@@ -27,7 +27,7 @@ public class RemoveTaskView implements View, TaskAction {
     }
 
     public int removeTask() {
-        System.out.print("Put index");
+        System.out.print("введите id ");
         int index = 0;
         try {
             String indexIn = reader.readLine();

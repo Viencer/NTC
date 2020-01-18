@@ -12,18 +12,18 @@ public class SaveLoadTasksView implements View, TaskAction {
     @Override
     public int printInfo(AbstractTaskList taskList) {
         if (check == ChooseNum.FIRST) {
-            System.out.println("Tasks was saved");
+            System.out.println("Задания были сохранены");
             return Controller.FINISH_ACTION;
         } else {
-            System.out.println("Tasks was loaded");
+            System.out.println("Задания были загружены");
         }
         return Controller.MAIN_MENU_ACTION;
     }
 
     @Override
     public int taskChoose() {
-        System.out.println("Put action type");
-        System.out.println("1 - save and exit,  2 - load,  3 - back to menu");
+        System.out.println("введите тип действия");
+        System.out.println("1 - сохранить и выйти,  2 - загрузить,  3 - назад в меню");
         int action = 0;
         try {
             action = Integer.parseInt(reader.readLine());
@@ -37,7 +37,7 @@ public class SaveLoadTasksView implements View, TaskAction {
     public String fileName() {
         String nameFile = "";
         try {
-            System.out.println("Put save file name");
+            System.out.println("введите имя файла сохранения");
             nameFile = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
