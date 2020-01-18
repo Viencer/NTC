@@ -1,8 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.model;
 
 import com.google.gson.Gson;
-import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
-import ua.edu.sumdu.j2se.mayfet.tasks.model.Task;
 
 import java.io.*;
 import java.time.LocalDateTime;

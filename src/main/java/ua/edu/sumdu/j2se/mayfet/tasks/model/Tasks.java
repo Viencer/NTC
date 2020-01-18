@@ -1,7 +1,5 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.model;
 
-import ua.edu.sumdu.j2se.mayfet.tasks.model.Task;
-
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.StreamSupport;
