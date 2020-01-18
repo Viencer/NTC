@@ -26,7 +26,7 @@ public class MainController extends Controller {
         controllers.add(new SaveLoadTasksController(new SaveLoadTasksView(), Controller.SAVE_LOAD_TASKS));
         controllers.add(new TaskActivityController(new TaskActivityView(), Controller.TASK_ACTIVE));
         controllers.add(new ChangeTaskController(new ChangeTaskView(), Controller.TASK_CHANGE));
-        NotificationControllerRep notifyr = new NotificationControllerRep(new NotificationView(), taskList); // поток для уведомлений
+        NotificationController notifyr = new NotificationController(new NotificationView(), taskList); // поток для уведомлений
         notifyr.setDaemon(true);
         notifyr.start();
         File myFile = new File("saves/autoSave.json");

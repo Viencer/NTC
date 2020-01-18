@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.Task;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.TaskIO;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class AddTaskController extends Controller {
+    private static final Logger logger = Logger.getLogger(NotificationController.class);
 
     public AddTaskController(View view, int actionToPerForm) {
         super(view, actionToPerForm);
@@ -28,7 +30,8 @@ public class AddTaskController extends Controller {
         } else if (taskChoose == ChooseNum.THIRD) {  // выход в главное меню
             return Controller.MAIN_MENU_ACTION;
         } else {
-            System.out.println(Errors.WRONG_NUMBER);    // ошибка на другие числа
+            System.out.println(Errors.WRONG_NUMBER);// ошибка на другие числа
+            logger.error(Errors.WRONG_NUMBER);
             return Controller.ADD_TASK_ACTION;
         }
         return view.printInfo(taskList);   // вывод
@@ -41,14 +44,17 @@ public class AddTaskController extends Controller {
         LocalDateTime timeEnd = ((AddTaskView) view).timeTaskEnd(); // получаем конец
         int interval = ((AddTaskView) view).repeatInterval(); //получаем интревал
         if (timeStart.isBefore(LocalDateTime.now())) { //ловим ошибку задача не может быть раньше поточного времени
+            logger.error(Errors.UNEXPECTED_TIME);
             System.out.println(Errors.UNEXPECTED_TIME);
             return ADD_TASK_ACTION;
         }
         if ((timeEnd.isBefore(LocalDateTime.now()))) { //ловим ошибку конец задачи не может быть раньше поточного времени
+            logger.error(Errors.UNEXPECTED_END_TIME);
             System.out.println(Errors.UNEXPECTED_END_TIME);
             return ADD_TASK_ACTION;
         }
         if (interval == Integer.MAX_VALUE || interval <= 0) { //ловим ошибку если ввели неправильный интервал
+            logger.error(Errors.UNEXPECTED_INTERVAL);
             System.out.println(Errors.UNEXPECTED_INTERVAL);
             return ADD_TASK_ACTION;
         }
@@ -64,6 +70,7 @@ public class AddTaskController extends Controller {
         String name = ((AddTaskView) view).nameTask();
         LocalDateTime time = ((AddTaskView) view).timeTask();
         if (time.isBefore(LocalDateTime.now())) {  // ловим ошибку задача не может быть раньше поточного времени
+            logger.error(Errors.UNEXPECTED_TIME);
             System.out.println(Errors.UNEXPECTED_TIME);
             return ADD_TASK_ACTION;   // выход в меню выбора добавления задач
         }

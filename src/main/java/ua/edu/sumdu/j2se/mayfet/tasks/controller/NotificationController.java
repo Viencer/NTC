@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.Task;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.Tasks;
@@ -10,11 +11,12 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.SortedMap;
 
-public class NotificationControllerRep extends Thread {
+public class NotificationController extends Thread {
+    private static final Logger logger = Logger.getLogger(NotificationController.class);
     NotificationView view;
     private AbstractTaskList taskList;
 
-    public NotificationControllerRep(NotificationView view, AbstractTaskList taskList) {
+    public NotificationController(NotificationView view, AbstractTaskList taskList) {
         this.view = view;
         this.taskList = taskList;
     }
@@ -38,7 +40,7 @@ public class NotificationControllerRep extends Thread {
             try {
                 Thread.sleep(Duration.between(LocalDateTime.now(), LocalDateTime.now().plusMinutes(1)).toMillis()); // ожидание
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
         }
     }

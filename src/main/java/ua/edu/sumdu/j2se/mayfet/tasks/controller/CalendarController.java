@@ -1,10 +1,13 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.CalendarView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 
 public class CalendarController extends Controller {
+    private static final Logger logger = Logger.getLogger(NotificationController.class);
+
     public CalendarController(View view, int actionToPerform) {
         super(view, actionToPerform);
     }
@@ -18,6 +21,7 @@ public class CalendarController extends Controller {
             return MAIN_MENU_ACTION;
         } else {
             System.out.println(Errors.WRONG_NUMBER);
+            logger.error(Errors.WRONG_NUMBER);
             return CALENDAR_ACTION;
         }
     }

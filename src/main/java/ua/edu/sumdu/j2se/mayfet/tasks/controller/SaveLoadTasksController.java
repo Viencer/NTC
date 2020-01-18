@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.TaskIO;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.SaveLoadTasksView;
@@ -8,6 +9,7 @@ import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
 import java.io.*;
 
 public class SaveLoadTasksController extends Controller {
+    private static final Logger logger = Logger.getLogger(NotificationController.class);
 
     public SaveLoadTasksController(View view, int actionToPerform) {
         super(view, actionToPerform);
@@ -30,12 +32,14 @@ public class SaveLoadTasksController extends Controller {
                 String nameFile = ((SaveLoadTasksView) view).fileName();   // ввод название файла для загрузки
                 TaskIO.read(taskList, new FileReader("saves/" + nameFile + ".json"));
             } catch (IOException e) {
+                logger.error(Errors.FILE_NOT_FOUND);
                 System.out.println(Errors.FILE_NOT_FOUND);
                 return Controller.SAVE_LOAD_TASKS;
             }
         } else if (taskChoose == ChooseNum.THIRD) {  // выход в главное меню
             return Controller.MAIN_MENU_ACTION;
         } else {
+            logger.error(Errors.WRONG_NUMBER);
             System.out.println(Errors.WRONG_NUMBER);
             return Controller.SAVE_LOAD_TASKS;
         }

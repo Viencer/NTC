@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mayfet.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mayfet.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.ChangeTaskView;
 import ua.edu.sumdu.j2se.mayfet.tasks.view.View;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class ChangeTaskController extends Controller {
+    private static final Logger logger = Logger.getLogger(NotificationController.class);
+
     public ChangeTaskController(View view, int actionToPerform) {
         super(view, actionToPerform);
     }
@@ -18,6 +21,7 @@ public class ChangeTaskController extends Controller {
         if (taskChoose == ChooseNum.FIRST) {  // если нажали 1
             int index = ((ChangeTaskView) view).index(); // получаем индекс задания
             if (index == Integer.MAX_VALUE || taskList.size() <= 0 || taskList.size() - 1 < index) { // ловим ошибку
+                logger.error(Errors.UNEXPECTED_INDEX);
                 System.out.println(Errors.UNEXPECTED_INDEX);
                 return TASK_CHANGE;
             }
@@ -29,6 +33,7 @@ public class ChangeTaskController extends Controller {
         } else if (taskChoose == ChooseNum.SECOND) {       // если в начале выбрали 2
             return MAIN_MENU_ACTION;
         } else {
+            logger.error(Errors.WRONG_NUMBER);
             System.out.println(Errors.WRONG_NUMBER);
         }
         return view.printInfo(taskList);
@@ -43,6 +48,7 @@ public class ChangeTaskController extends Controller {
         } else if (taskChooseNon == ChooseNum.THIRD) {   //3.3 выходим в меню
             return TASK_CHANGE;
         } else {
+            logger.error(Errors.WRONG_NUMBER);
             System.out.println(Errors.WRONG_NUMBER);
             return TASK_CHANGE;
         }
@@ -58,6 +64,7 @@ public class ChangeTaskController extends Controller {
         } else if (taskChooseRep == ChooseNum.THIRD) {  // если выбрали 1.3
             int interval = ((ChangeTaskView) view).interval();    // вводим интевал
             if (interval == Integer.MAX_VALUE || interval <= 0) {  // ловим ошибку
+                logger.error(Errors.UNEXPECTED_INTERVAL);
                 System.out.println(Errors.UNEXPECTED_INTERVAL);
                 return TASK_CHANGE;
             }
@@ -65,6 +72,7 @@ public class ChangeTaskController extends Controller {
         } else if (taskChooseRep == ChooseNum.FOURTH) {
             return TASK_CHANGE;
         } else {
+            logger.error(Errors.WRONG_NUMBER);
             System.out.println(Errors.WRONG_NUMBER);
             return TASK_CHANGE;
         }
@@ -103,6 +111,7 @@ public class ChangeTaskController extends Controller {
     }
 
     private void timeError() {
+        logger.error(Errors.UNEXPECTED_TIME);
         System.out.println(Errors.UNEXPECTED_TIME);
     }
 }
